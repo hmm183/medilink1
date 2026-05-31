@@ -1,0 +1,16 @@
+/* .container { width: 100%; max-width: 500px; padding: 2rem; margin: 2rem; background-color: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); text-align: center; }
+h1, h2 { color: #1a202c; margin-bottom: 1.5rem; }
+p { color: #555; line-height: 1.5; }
+.btn { display: inline-block; width: 100%; padding: 12px 24px; font-size: 16px; font-weight: 600; color: #fff; background-color: #007bff; border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; box-sizing: border-box; }
+.btn:hover:not(:disabled) { background-color: #0056b3; transform: translateY(-2px); }
+.status { margin-top: 1.5rem; padding: 1rem; border-radius: 8px; font-weight: 500; }
+.status.info { background-color: #e6f7ff; color: #005f8d; }
+.status.error { background-color: #fff1f0; color: #d93026; }
+.user-data { margin-top: 1rem; margin-bottom: 1.5rem; text-align: left; background-color: #fafafa; padding: 1.5rem; border-radius: 8px; border: 1px solid #eee; }
+.user-data h3 { margin-top: 0; }
+.user-data p { margin: 0.5rem 0; }
+.user-data strong { color: #1a202c; }
+.form-group { margin-bottom: 1rem; text-align: left; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.form-group input { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box; }
+.toggle-link { margin-top: 1.5rem; color: #007bff; cursor: pointer; text-decoration: underline; font-size: 14px; } */
