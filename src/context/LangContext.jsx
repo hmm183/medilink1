@@ -617,6 +617,41 @@ function _saveClientCache(cache) {
   }
 }
 
+// ── Sanitize translation cache (removes poisoned English values for non-Latin languages) ──
+const LATIN_LANGUAGES = new Set(['en', 'fr', 'es', 'de', 'pt']);
+const isLatinOnly = (text) => /^[\u0000-\u007F]*$/.test(text);
+
+function _sanitizeClientCache() {
+  try {
+    const cache = _loadClientCache();
+    let changed = false;
+
+    Object.keys(cache).forEach((lang) => {
+      if (!LATIN_LANGUAGES.has(lang)) {
+        const langCache = cache[lang];
+        if (langCache && typeof langCache === "object") {
+          Object.keys(langCache).forEach((original) => {
+            const trans = langCache[original];
+            if (typeof trans === "string" && isLatinOnly(trans)) {
+              delete langCache[original];
+              changed = true;
+            }
+          });
+        }
+      }
+    });
+
+    if (changed) {
+      _saveClientCache(cache);
+    }
+  } catch (e) {
+    console.error("Failed to sanitize translation cache:", e);
+  }
+}
+
+// Run sanitization once at load time
+_sanitizeClientCache();
+
 // ── Core translation function ──────────────────────────────────────────────
 async function translateText(texts, targetLang) {
   // Normalize input: accept both a single string and an array
@@ -684,7 +719,10 @@ async function translateText(texts, targetLang) {
       batch.forEach((b, j) => {
         const trans = translated[j] || b.text;
         results[b.idx] = trans;
-        if (trans !== b.text) {
+
+        const isFailedTranslation = !LATIN_LANGUAGES.has(targetLang) && isLatinOnly(trans);
+
+        if (trans !== b.text && !isFailedTranslation) {
           newEntries[b.text] = trans;
         }
       });

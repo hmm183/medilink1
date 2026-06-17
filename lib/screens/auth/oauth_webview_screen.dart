@@ -27,6 +27,7 @@ class _OAuthWebViewScreenState extends State<OAuthWebViewScreen> {
 
   void _initializeWebView() {
     _controller = WebViewController()
+      ..setUserAgent("Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36")
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
         NavigationDelegate(

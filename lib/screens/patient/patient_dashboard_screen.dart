@@ -51,7 +51,6 @@ class _PatientDashboardScreenState extends State<PatientDashboardScreen> {
   List<Note> _originalNotes = [];
   HealthSummary? _originalHealthSummary;
   String? _lastLanguage;
-  bool _isTranslatingDynamic = false;
 
   @override
   void didChangeDependencies() {
@@ -88,15 +87,10 @@ class _PatientDashboardScreenState extends State<PatientDashboardScreen> {
             .where((info) => info.medicine.status == 'past')
             .toList();
         
-        _isTranslatingDynamic = false;
         isLoading = false;
       });
       return;
     }
-
-    setState(() {
-      _isTranslatingDynamic = true;
-    });
 
     try {
       List<String> toTranslate = [];
@@ -229,7 +223,6 @@ class _PatientDashboardScreenState extends State<PatientDashboardScreen> {
         pastMeds = flatMeds
             .where((info) => info.medicine.status == 'past')
             .toList();
-        _isTranslatingDynamic = false;
         isLoading = false;
       });
 
@@ -254,7 +247,6 @@ class _PatientDashboardScreenState extends State<PatientDashboardScreen> {
           pastMeds = flatMeds
               .where((info) => info.medicine.status == 'past')
               .toList();
-          _isTranslatingDynamic = false;
           isLoading = false;
         });
       }

@@ -60,7 +60,7 @@ class _PatientSignInScreenState extends State<PatientSignInScreen> {
   Future<void> _loginWithGoogle() async {
     setState(() => _isLoading = true);
     try {
-      final googleAuthUrl = '${AppConfig.baseUrl}/auth/google';
+      final googleAuthUrl = '${AppConfig.baseUrl}/auth/google?prompt=select_account';
       const redirectUrl = 'http://localhost:3000/auth';
 
       if (kIsWeb) {
@@ -77,7 +77,7 @@ class _PatientSignInScreenState extends State<PatientSignInScreen> {
           context,
           MaterialPageRoute(
             builder: (_) => const OAuthWebViewScreen(
-              authorizationUrl: '${AppConfig.baseUrl}/auth/google',
+              authorizationUrl: '${AppConfig.baseUrl}/auth/google?prompt=select_account',
               redirectUrl: redirectUrl,
             ),
           ),

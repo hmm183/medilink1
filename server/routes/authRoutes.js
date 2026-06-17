@@ -17,7 +17,10 @@ router.post('/set-password', setPasswordAndRegister);
 router.post('/login', loginUser);
 
 // Google OAuth Initiation
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/google', passport.authenticate('google', { 
+  scope: ['profile', 'email'],
+  prompt: 'select_account'
+}));
 
 // Google OAuth Callback
 router.get(

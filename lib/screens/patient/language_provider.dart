@@ -134,16 +134,23 @@ class LanguageProvider with ChangeNotifier {
     String? targetLanguage,
   }) async {
     final target = targetLanguage ?? _selectedLanguage;
-    if (target == 'en' || texts.isEmpty) return texts;
+    debugPrint("LanguageProvider.translateTexts: request to translate ${texts.length} items to '$target'");
+    debugPrint("Items: $texts");
+    if (target == 'en' || texts.isEmpty) {
+      debugPrint("LanguageProvider.translateTexts: skipping translation (target is English or empty)");
+      return texts;
+    }
 
     try {
       final translated = await _apiService?.translateTexts(texts, target);
+      debugPrint("LanguageProvider.translateTexts: API response returned: $translated");
       if (translated is List<String> && translated.length == texts.length) {
         return translated;
+      } else {
+        debugPrint("LanguageProvider.translateTexts error: length mismatch or invalid type. Expected ${texts.length}, got ${translated?.length}");
       }
-    } catch (_) {
-      // Dynamic translation is a best-effort enhancement. Static UI strings
-      // should remain usable even if the backend translator is offline.
+    } catch (e, stack) {
+      debugPrint("LanguageProvider.translateTexts Exception: $e\n$stack");
     }
 
     return texts;

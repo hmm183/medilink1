@@ -6,8 +6,6 @@ import 'package:medilink1/screens/patient_detail_screen.dart';
 import 'package:medilink1/core/models/Patient.dart';
 import 'package:medilink1/core/network/ApiService.dart';
 import 'package:medilink1/widgets/stat_card.dart';
-import 'package:medilink1/app_theme.dart';
-
 import '../patient/language_provider.dart';
 
 class DoctorDashboard extends StatefulWidget {

@@ -26,7 +26,6 @@ class _MedicationSummaryScreenState extends State<MedicationSummaryScreen> {
   // Original copies of data for dynamic translation
   List<Map<String, dynamic>> _originalPrescriptions = [];
   String? _lastLanguage;
-  bool _isTranslatingDynamic = false;
 
   @override
   void didChangeDependencies() {
@@ -46,15 +45,10 @@ class _MedicationSummaryScreenState extends State<MedicationSummaryScreen> {
     if (targetLang == 'en') {
       setState(() {
         _prescriptions = _originalPrescriptions;
-        _isTranslatingDynamic = false;
         _isLoading = false;
       });
       return;
     }
-
-    setState(() {
-      _isTranslatingDynamic = true;
-    });
 
     try {
       List<String> toTranslate = [];
@@ -76,7 +70,6 @@ class _MedicationSummaryScreenState extends State<MedicationSummaryScreen> {
       if (toTranslate.isEmpty) {
         setState(() {
           _prescriptions = _originalPrescriptions;
-          _isTranslatingDynamic = false;
           _isLoading = false;
         });
         return;
@@ -125,7 +118,6 @@ class _MedicationSummaryScreenState extends State<MedicationSummaryScreen> {
 
       setState(() {
         _prescriptions = transPrescriptions;
-        _isTranslatingDynamic = false;
         _isLoading = false;
       });
 
@@ -134,7 +126,6 @@ class _MedicationSummaryScreenState extends State<MedicationSummaryScreen> {
       if (mounted) {
         setState(() {
           _prescriptions = _originalPrescriptions;
-          _isTranslatingDynamic = false;
           _isLoading = false;
         });
       }

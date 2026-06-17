@@ -58,7 +58,6 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
   List<Note> _originalNotes = [];
   HealthSummary? _originalHealthSummary;
   String? _lastLanguage;
-  bool _isTranslatingDynamic = false;
 
   Future<void> _applyTranslations() async {
     if (!mounted) return;
@@ -71,15 +70,10 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
         history = _originalHistory;
         notes = _originalNotes;
         healthSummary = _originalHealthSummary;
-        _isTranslatingDynamic = false;
         isLoading = false;
       });
       return;
     }
-
-    setState(() {
-      _isTranslatingDynamic = true;
-    });
 
     try {
       List<String> toTranslate = [];
@@ -208,7 +202,6 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
         history = transHistory;
         notes = transNotes;
         prescriptions = transPrescriptions;
-        _isTranslatingDynamic = false;
         isLoading = false;
       });
 
@@ -220,7 +213,6 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
           history = _originalHistory;
           notes = _originalNotes;
           healthSummary = _originalHealthSummary;
-          _isTranslatingDynamic = false;
           isLoading = false;
         });
       }

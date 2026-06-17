@@ -190,7 +190,7 @@ class _DoctorSignInScreenState extends State<DoctorSignInScreen> {
                       TextButton.icon(
                         onPressed: () {
                           setState(() {
-                            _email.text = 'doctor@gmail.com';
+                            _email.text = 'doc@gmail.com';
                             _password.text = 'pass';
                           });
                         },
